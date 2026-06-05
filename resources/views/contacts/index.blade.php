@@ -14,24 +14,39 @@
     <div class="container mt-4">
         <h1>Agenda de Contatos</h1>
 
-        <a href="{{route('contacts.create')}}" class="btn btn-primary mb-3">Novo Contato</a>
+        <a href="{{route('contacts.create')}}" class="btn btn-primary mb-3">
+            Novo Contato
+        </a>
+
+        <a href="{{route('contacts.favorites')}}" class="btn btn-warning mb-3">
+            Favoritos ★
+        </a>
 
         @if($contacts->isEmpty())
             <p>Nenhum contato encontrado.</p>
         @else
-            <ul class="list-group">
+            <div class="list-group">
                 @foreach ($contacts as $contact)
-                    <li class="list-group-item">
-                        <strong>{{ $contact->first_name }} {{ $contact->last_name }}</strong><br>
+                    <a href="{{ route('contacts.show', $contact) }}" class="list-group-item list-group-item-action">
+                        <strong>
+                            {{ $contact->first_name }} {{$contact->last_name}}
+                        </strong>
+
+                        @if ($contact->favorite)
+                            <span class="text-warning">★</span>
+                        @endif
+
+                        <br>
+
                         <span>{{ $contact->phone1 }}</span>
 
-                        @if ($contact->email)
+                        @if($contact->email)
                             <br>
                             <span>{{ $contact->email }}</span>
                         @endif
-                    </li>
+                    </a>
                 @endforeach
-            </ul>
+            </div>
         @endif
     </div>
 

@@ -17,7 +17,7 @@
             Voltar
         </a>
 
-        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-primary-3">
+        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-primary mb-3">
             Editar
         </a>
 

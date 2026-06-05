@@ -17,6 +17,10 @@
             Voltar
         </a>
 
+        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-primary-3">
+            Editar
+        </a>
+
         <div class="card">
             <div class="card-body">
                 <h1 class="card-title">

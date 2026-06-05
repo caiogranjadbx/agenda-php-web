@@ -62,7 +62,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit', compact('contact'));
     }
 
     /**
@@ -70,7 +70,24 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+
+            'phone1' => 'required|string|max:255',
+            'phone2' => 'nullable|string|max:255',
+            'phone3' => 'nullable|string|max:255',
+
+            'email' => 'nullable|email|max:255',
+            'adress' => 'nullable|string|max:255',
+            'birthday' => 'nullable|date',
+            'notes' => 'nullable|string',
+        ]);
+
+        $contact->update($validated);
+
+        return redirect()->route('contacts.show', $contact);
     }
 
     /**

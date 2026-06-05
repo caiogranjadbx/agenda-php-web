@@ -21,6 +21,15 @@
             Editar
         </a>
 
+        <form action="{{ route('contacts.destroy', $contact) }}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE') 
+
+            <button type="submit" class="btn btn-danger mb-3" onclick="return confirm('Tem Certeza que deseja excluir esse contato?')">
+                Excluir
+            </button>
+        </form>
+
         <div class="card">
             <div class="card-body">
                 <h1 class="card-title">

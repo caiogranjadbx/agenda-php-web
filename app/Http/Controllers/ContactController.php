@@ -99,4 +99,21 @@ class ContactController extends Controller
 
         return redirect()->route('contacts.index');
     }
+
+    public function toggleFavorite(Contact $contact)
+    {
+     $contact->favorite = ! $contact->favorite;
+     $contact->save();
+     
+     return redirect()->route('contacts.show', $contact);
+    }
+
+    public function favorites()
+{
+    $contacts = Contact::where('favorite', true)
+        ->orderBy('first_name')
+        ->get();
+
+    return view('contacts.favorites', compact('contacts'));
+}
 }

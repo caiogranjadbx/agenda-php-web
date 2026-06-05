@@ -30,6 +30,19 @@
             </button>
         </form>
 
+        <form action="{{ route('contacts.favorite', $contact, $contact) }}" method="POST" class="d-inline">
+            @csrf
+            @method('PATCH')
+
+            <button type="submit" class="btn btn-warning mb-3">
+                @if ($contact->favorite)
+                    Remover dos Favoritos
+                @else
+                    Adicionar aos Favoritos
+                @endif
+            </button>
+        </form>
+
         <div class="card">
             <div class="card-body">
                 <h1 class="card-title">
